@@ -569,6 +569,15 @@ def test_select_proxies(url, expected, proxies):
     "value, expected",
     (
         ('foo="is a fish", bar="as well"', {"foo": "is a fish", "bar": "as well"}),
+        (
+            'realm = "test", nonce = "abc", qop="auth"',
+            {"realm": "test", "nonce": "abc", "qop": "auth"},
+        ),
+        (
+            'realm\t=\t"test",\tnonce\t=\t"abc"',
+            {"realm": "test", "nonce": "abc"},
+        ),
+        ("token = unquoted ", {"token": "unquoted"}),
         ("key_without_value", {"key_without_value": None}),
     ),
 )
